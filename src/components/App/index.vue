@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    vu
     <router-view :key="$route.fullPath"/>
   </div>
 </template>

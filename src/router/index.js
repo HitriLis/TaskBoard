@@ -5,15 +5,15 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/boards',
     name: 'Home',
     component: () => import('../views/Dashboard.vue')
+  },
+  {
+    path: '/boards/:id',
+    name: 'boards',
+    component: () => import('../views/BoardPage')
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({

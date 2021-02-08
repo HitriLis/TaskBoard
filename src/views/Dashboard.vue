@@ -1,19 +1,42 @@
-<template>
-  <div>
-  <b-card
-    title="Card Title"
-    img-src="https://picsum.photos/600/300/?image=25"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
-</div>
+<template lang="pug">
+div
+  b-button(
+    v-b-modal.add-new-board
+    variant="primary"
+    size="lg"
+    @click="hideModal"
+  )
+    | Новая Доска
+    b-icon(
+      icon="plus"
+    )
+  .content(
+    v-if="boards.length"
+    v-for="board in boards"
+  )
+    router-link(
+      :to="{ name: 'boards', params: {id: board.id}}"
+    )
+      | {{board.title}}
+  AddBoardModal
 </template>
+
+<script>
+import AddBoardModal from '@/components/Modal/AddBoardModal'
+import { mapState } from 'vuex'
+export default {
+  components: {
+    AddBoardModal
+  },
+  computed: {
+    ...mapState({
+      boards: state => state.dashboard.board
+    })
+  },
+  methods: {
+    hideModal () {
+      console.log('this.board')
+    }
+  }
+}
+</script>
