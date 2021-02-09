@@ -24,9 +24,10 @@ div
       )
         | Отмена
       b-button(
-        class="mt-3"
+        class="mt-3 ml-3"
         variant="success"
         @click="toggleModal"
+        :disabled="!name"
       )
         | Сохранить
 </template>
@@ -42,6 +43,7 @@ export default {
   methods: {
     hideModal () {
       this.$refs.newboard.hide()
+      this.name = ''
     },
     toggleModal () {
       const board = {
@@ -49,7 +51,7 @@ export default {
         title: this.name,
         list: []
       }
-      this.$store.commit('addBoard', board)
+      this.$store.dispatch('addBoard', board)
       this.$refs.newboard.hide()
       this.name = ''
     }

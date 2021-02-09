@@ -6,8 +6,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/boards',
-    name: 'Home',
-    component: () => import('../views/Dashboard.vue')
+    name: 'boards-list',
+    component: () => import('../views/BoardList')
   },
   {
     path: '/boards/:id',

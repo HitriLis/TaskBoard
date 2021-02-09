@@ -4,12 +4,19 @@ export default {
   },
   getters: {},
   mutations: {
-    addBoard (state, payload) {
+    ADD_NEW_BOARD (state, payload) {
       state.board.push(payload)
     },
-    deleteBoard (state, payload) {
-      state.board.push(payload)
+    DELETE_BOARD (state, id) {
+      state.board = state.board.filter(e => e.id !== id)
     }
   },
-  actions: {}
+  actions: {
+    deleteBoard ({ commit }, id) {
+      commit('DELETE_BOARD', id)
+    },
+    addBoard ({ commit }, item) {
+      commit('ADD_NEW_BOARD', item)
+    }
+  }
 }
