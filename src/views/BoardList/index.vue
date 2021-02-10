@@ -6,12 +6,11 @@ div
     h1(
       class="font-weight-bold"
     )
-      | Персональные доски
+      | Доски
     b-button(
       v-b-modal.add-new-board
       variant="primary"
       size="lg"
-      @click="hideModal"
     )
       | Новая Доска
       b-icon(
@@ -37,10 +36,10 @@ div
     v-else
     class="d-flex justify-content-center mt-3"
   )
-    h2(
-      class="font-weight-bold"
+    b-jumbotron(
+      header="Персональные доски"
+      lead="У вас нет доступных досок использования"
     )
-      | Персональные доски
   AddBoardModal
 </template>
 
@@ -55,13 +54,10 @@ export default {
   },
   computed: {
     ...mapState({
-      boards: state => state.dashboard.board
+      boards: state => state.dashboard.boards
     })
   },
   methods: {
-    hideModal () {
-      console.log('this.board')
-    }
   }
 }
 </script>

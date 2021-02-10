@@ -13,6 +13,11 @@ const routes = [
     path: '/boards/:id',
     name: 'boards',
     component: () => import('../views/BoardPage')
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound')
   }
 ]
 

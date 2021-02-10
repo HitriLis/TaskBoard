@@ -48,8 +48,8 @@ export default {
     toggleModal () {
       const board = {
         id: Date.now(),
-        title: this.name,
-        list: []
+        name: this.name,
+        tasklist: []
       }
       this.$store.dispatch('addBoard', board)
       this.$refs.newboard.hide()
