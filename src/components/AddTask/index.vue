@@ -1,31 +1,28 @@
 <template lang="pug">
-  .list-add(
-    :class="{active:edit}"
-  )
+  .task-add
     b-button(
       v-if="!edit"
       block
       variant="outline-dark"
       @click="edit=true"
     )
-      | {{title}}
-    .list-add__action(
+      | Добавить карточку
+    .task-add__action(
       v-else
     )
       b-form-input(
-        id="input-small"
         size="sm"
         v-model="name"
         @keyup.enter="addList"
-        placeholder="Ввести заголовок списка"
+        placeholder="Ввести заголовок карточки"
       )
       .action
         b-button(
           variant="success"
-          @click="addList"
           class="mr-2"
+          @click="addTask"
         )
-          | Добавить список
+          | Добавить карточку
         b-button(
           variant="primary"
           @click="close"
@@ -34,12 +31,14 @@
 </template>
 
 <script>
+import ButtonVariant from '@/components/ButtonVariant'
 
 export default {
   components: {
+    ButtonVariant
   },
   props: {
-    title: {
+    item: {
       type: String,
       default: ''
     }
@@ -55,15 +54,9 @@ export default {
   methods: {
     close () {
       this.edit = false
-      this.name = ''
     },
-    addList () {
-      const list = {
-        id: Date.now(),
-        name: this.name,
-        task: []
-      }
-      this.$store.dispatch('addList', list)
+    addTask () {
+      this.$emit('addTask', this.name)
       this.close()
     }
   }
@@ -71,17 +64,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .list-add
-    align-self self-start
-    width 272px
-    margin 0 4px
-    flex 0 0 auto
+  .task-add
     padding 5px
-    border-radius 3px
-    &.active
-      background-color #ebecf0
-  .action
-    display flex
-    justify-content flex-start
-    margin-top 5px
+    &__action
+      .action
+        display flex
+        justify-content flex-start
+        margin-top 8px
 </style>

@@ -13,9 +13,11 @@
           v-if="board.tasklist.length"
           :key="list.id"
           v-for="list in board.tasklist"
-          :title="list.name"
+          :item="list"
         )
-        AddList
+        AddList(
+          :title="board.tasklist.length ? 'Добавьте еще одну колонку' : 'Добавьте колонку'"
+        )
 </template>
 
 <script>

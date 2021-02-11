@@ -12,21 +12,15 @@
           .card-title
             | {{board.name}}
           .card-action
-            button.edit(
+            ButtonVariant(
               @click="edit = !edit"
+              :icon="'pencil-fill'"
+              :variant="edit ? 'danger': ''"
             )
-              b-icon(
-                icon="pencil-fill"
-                aria-hidden="true"
-                :variant="edit ? 'danger': ''"
-              )
-            button.colse(
+            ButtonVariant(
               @click="deleteBoard"
+              :icon="'x-circle'"
             )
-              b-icon(
-                icon="x-circle"
-                aria-hidden="true"
-              )
       b-card-body(
         class="card-content"
       )
@@ -42,15 +36,12 @@
               @keypres.enter="updateBoard"
             )
           b-col(sm="2")
-            button.edit(
+            ButtonVariant(
               @click="updateBoard"
+              :icon="'check'"
+              :variant="'success'"
+              :scale="'2'"
             )
-              b-icon(
-                icon="check"
-                aria-hidden="true"
-                variant="success"
-                scale="2"
-              )
         b-list-group(
           v-else
         )
@@ -63,6 +54,24 @@
               pill
             )
               | {{board.tasklist.length}}
+          b-list-group-item(
+            class="d-flex justify-content-between align-items-center custom-item"
+          )
+            | Всего карточек
+            b-badge(
+              variant="primary"
+              pill
+            )
+              | {{countTask}}
+          b-list-group-item(
+            class="d-flex justify-content-between align-items-center custom-item"
+          )
+            | Всего завершено
+            b-badge(
+              variant="primary"
+              pill
+            )
+              | {{countTaskComplet}}
         router-link(
           v-if="!edit"
           :to="{ name: 'boards', params: {id: board.id}}"
@@ -71,7 +80,11 @@
 </template>
 
 <script>
+import ButtonVariant from '@/components/ButtonVariant'
 export default {
+  components: {
+    ButtonVariant
+  },
   props: {
     board: {
       type: Object,
@@ -85,6 +98,16 @@ export default {
     }
   },
   computed: {
+    countTask () {
+      return this.board.tasklist.reduce((sum, current) => {
+        return sum + current.task.length
+      }, 0)
+    },
+    countTaskComplet () {
+      return this.board.tasklist.reduce((sum, current) => {
+        return sum + current.task.filter(e => e.complet).length
+      }, 0)
+    },
     rename: {
       get () {
         return this.board.name

@@ -23,7 +23,6 @@ export default {
           return Object.assign(e, payload)
         }
       })
-      console.log(state)
     }
   },
   actions: {
