@@ -9,19 +9,23 @@
           :variant="'danger'"
         )
       .list-cards
-        CardTask(
-          v-for="item in item.task"
-          :key="item.id"
-          :task="item"
-          @update="updateTask(item, $event)"
-          @deleteTask="deleteTask"
+        draggable(
+          v-model="item.task" group="people" @start="drag=true" @end="drag=false"
         )
+          CardTask(
+            v-for="item in item.task"
+            :key="item.id"
+            :task="item"
+            @update="updateTask(item, $event)"
+            @deleteTask="deleteTask"
+          )
         AddTask(
           @addTask="createTask"
         )
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import ButtonVariant from '@/components/ButtonVariant'
 import AddTask from '@/components/AddTask'
 import CardTask from '@/components/Card/CardTask'
@@ -29,7 +33,8 @@ export default {
   components: {
     ButtonVariant,
     AddTask,
-    CardTask
+    CardTask,
+    draggable
   },
   props: {
     item: {
