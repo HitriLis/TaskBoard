@@ -6,7 +6,7 @@
       variant="outline-dark"
       @click="edit=true"
     )
-      | Добавить карточку
+      | {{existItem ? 'Добавить еще карточку' : 'Добавить карточку'}}
     .task-add__action(
       v-else
     )
@@ -23,24 +23,24 @@
           @click="addTask"
         )
           | Добавить карточку
-        b-button(
-          variant="primary"
+        ButtonVariant(
           @click="close"
+          :icon="'x-circle'"
+          :variant="'danger'"
+          :scale="2"
         )
-          | Закрыть
 </template>
 
 <script>
 import ButtonVariant from '@/components/ButtonVariant'
-
 export default {
   components: {
     ButtonVariant
   },
   props: {
-    item: {
-      type: String,
-      default: ''
+    existItem: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -54,6 +54,7 @@ export default {
   methods: {
     close () {
       this.edit = false
+      this.name = ''
     },
     addTask () {
       this.$emit('addTask', this.name)

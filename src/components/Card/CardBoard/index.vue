@@ -40,7 +40,7 @@
               @click="updateBoard"
               :icon="'check'"
               :variant="'success'"
-              :scale="'2'"
+              :scale="2"
             )
         b-list-group(
           v-else

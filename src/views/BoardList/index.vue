@@ -56,8 +56,6 @@ export default {
     ...mapState({
       boards: state => state.dashboard.boards
     })
-  },
-  methods: {
   }
 }
 </script>

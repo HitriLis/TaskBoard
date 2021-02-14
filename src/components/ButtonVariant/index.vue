@@ -25,8 +25,8 @@ export default {
       default: ''
     },
     scale: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     }
   }
 }

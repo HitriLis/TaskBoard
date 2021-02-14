@@ -10,7 +10,9 @@
         )
       .list-cards
         draggable(
-          v-model="item.task" group="people" @start="drag=true" @end="drag=false"
+          v-model="item.task"
+          group="task"
+          :class="{empty:!item.task.length}"
         )
           CardTask(
             v-for="item in item.task"
@@ -21,6 +23,7 @@
           )
         AddTask(
           @addTask="createTask"
+          :existItem="!!item.task.length"
         )
 </template>
 
@@ -41,8 +44,6 @@ export default {
       type: Object,
       default: () => {}
     }
-  },
-  computed: {
   },
   methods: {
     deleteList () {
@@ -92,4 +93,6 @@ export default {
   &-cards
     margin 0 4px
     padding 0 4px
+    .empty
+      padding-top 30px
 </style>

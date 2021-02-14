@@ -3,7 +3,17 @@
     b-navbar(type="dark" variant="dark")
       b-navbar-nav
         b-nav-item(
-          :to="{name: 'boards-list'}"
+          :to="{name: routeLink}"
         )
-          | Доски
+          | {{$route.name === 'boards-list' ? 'Home' : 'Доски'}}
 </template>
+
+<script>
+export default {
+  computed: {
+    routeLink () {
+      return this.$route.name === 'boards-list' ? 'home' : 'boards-list'
+    }
+  }
+}
+</script>
