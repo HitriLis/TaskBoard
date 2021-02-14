@@ -6,16 +6,15 @@ div
     hide-footer
     ref="newboard"
   )
-    b-form
-      b-form-group(
-        label="Название доски:"
-        label-for="board-name"
+    b-form-group(
+      label="Название доски:"
+      label-for="board-name"
+    )
+      b-form-input(
+        id="board-name"
+        v-model="name"
+        placeholder="Придумайте название"
       )
-        b-form-input(
-          id="board-name"
-          v-model="name"
-          placeholder="Придумайте название"
-        )
     .action-modal
       b-button(
         class="mt-3"

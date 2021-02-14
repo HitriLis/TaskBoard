@@ -21,6 +21,7 @@
           variant="success"
           class="mr-2"
           @click="addTask"
+          :disabled="!name"
         )
           | Добавить карточку
         ButtonVariant(

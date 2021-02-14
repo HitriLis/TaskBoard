@@ -24,6 +24,7 @@
           variant="success"
           @click="addList"
           class="mr-2"
+          :disabled="!name"
         )
           | Добавить список
         b-button(
